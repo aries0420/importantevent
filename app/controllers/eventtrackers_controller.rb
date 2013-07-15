@@ -2,7 +2,8 @@ class EventtrackersController < ApplicationController
   # GET /eventtrackers
   # GET /eventtrackers.json
   def index
-    @eventtrackers = Eventtracker.all
+    #@eventtrackers = Eventtracker.all
+    @eventtrackers = Eventtracker.where('eventtrackers.date >= ?', Date.today)
 
     respond_to do |format|
       format.html # index.html.erb
