@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @eventtracker.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @eventtracker.description %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @eventtracker.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_eventtracker_path(@eventtracker) %> |
+<%= link_to 'Back', eventtrackers_path %>
