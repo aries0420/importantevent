@@ -1,27 +1,38 @@
-<h1>Listing eventtrackers</h1>
+<%- model_class = Eventtracker -%>
+<div class="page-header">
+  <h1>Important Events/Dates</h1>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:date) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
 
 <% @eventtrackers.each do |eventtracker| %>
   <tr>
-    <td><%= eventtracker.title %></td>
-    <td><%= eventtracker.description %></td>
+    <td width="150"><%= eventtracker.title %></td>
+    <td width="300"><%= eventtracker.description %></td>
     <td><%= eventtracker.date %></td>
     <td><%= link_to 'Show', eventtracker %></td>
-    <td><%= link_to 'Edit', edit_eventtracker_path(eventtracker) %></td>
-    <td><%= link_to 'Destroy', eventtracker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_eventtracker_path(eventtracker), :class => 'btn btn-mini' %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  eventtracker_path(eventtracker),
+                  :method => :delete,
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-mini btn-danger' %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Eventtracker', new_eventtracker_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_eventtracker_path,
+            :class => 'btn btn-primary' %>
